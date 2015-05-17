@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="UTF-8">
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  	
+  	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body ng-app="app">
+  <div class="container" ng-controller="PromiseController">
+    <div class="row">
+	     <div class="col-xs-12">
+	        <h1>$http</h1>
+
+	        <p class="text-muted">Status: {{ status }}</p>
+	    </div>  
+        <div>
+        <div class="col-xs-12">
+        	<div class="well" ng-repeat="timeslot in timeslots track by $index">
+              <h2>ID: {{ timeslot.id }}</h2>
+              <p>Duration: {{ timeslot.duration }}</p>
+              <p>Date: {{ timeslot.date }}</p>
+
+              <p>Time: {{	timeslot.time }}</p>
+              <p>Location: {{ timeslot.location }}</p>
+              <p>Contact Email:{{ timeslot.contactEmail }}</p>
+          	</div>
+        </div>
+          
+        <form name="HttpForm" style="display:block;">
+          	<div class="form-group">
+				<label class="col-md-2 control-label" for="idNumber">ID termina</label>
+              	<input name="idNumber" type="number" class="form-control" ng-model="idNumber" ng-required="true"/>
+              	<div class="col-md-6" ng-show="AppForm.idNumber.$error.required && AppForm.idNumber.$touched">
+					<p class="text-danger text-right">To polje je obvezno!</p>
+				</div>	
+			</div>
+          	<div class="form-group">
+				<label class="col-md-2 control-label" for="email">Email</label>
+              	<input name="email" type="text" class="form-control" ng-model="email" ng-required="true"/>
+              	<div class="col-md-6" ng-show="AppForm.email.$error.required && AppForm.email.$touched">
+					<p class="text-danger text-right">To polje je obvezno!</p>
+				</div>	
+			</div>
+          	<button class="btn btn-primary" type="submit" ng-click="post(idNumber,email)">Rezerviraj</button>
+          </form>
+        </div>
+
+      
+    </div>
+  </div>
+
+</body>
+</html>
